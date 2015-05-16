@@ -10,7 +10,7 @@ class MainController < ApplicationController
         @loc = AddressLocation.find_by_address(params[:address_location][:address])
         @loc ||= AddressLocation.create(params.require(:address_location).permit(:address))
         if @loc.locator.nil?
-            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)
+            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
         render :result
@@ -24,7 +24,7 @@ class MainController < ApplicationController
         @loc = IpLocation.find_by_ip(params[:ip_location][:ip])
         @loc ||= IpLocation.create(params.require(:ip_location).permit(:ip))
         if @loc.locator.nil?
-            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)
+            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
         render :result
@@ -38,7 +38,7 @@ class MainController < ApplicationController
         @loc = PureLocation.where(latitude: params[:pure_location][:latitude], longitude: params[:pure_location][:longitude]).first
         @loc ||= PureLocation.create(params.require(:pure_location).permit(:latitude, :longitude))
         if @loc.locator.nil?
-            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)
+            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
         render :result

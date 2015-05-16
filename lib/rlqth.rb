@@ -15,6 +15,8 @@ module Rlqth
             lon_min = "0." + lon_min
             lon_min = lon_min.to_f
             lon_min = lon_min*60
+            k = 12*(longitude-2*(longitude/2).floor)
+            l = 24*(latitude - latitude.floor)
             loc1 = (lon_deg/20).floor
             lon_tmp = lon_deg - loc1*20
             loc1 = (65+loc1).chr
@@ -23,11 +25,11 @@ module Rlqth
             loc2 = (65+loc2).chr
             loc3 = lon_tmp/2
             loc4 = lat_tmp
-            loc5 = (lon_min/2.5).floor
-            loc5 = (97+loc5).chr
-            loc6 = (lat_min/2.5).floor
-            loc6 = (97+loc6).chr
-            loc = loc1 + loc2 + loc3.to_s + loc4.to_s + loc5 + loc6
+            loc5 = (97+k.floor).chr
+            loc6 = (97+l.floor).chr
+            loc7 = 10*(k-k.floor).floor
+            loc8 = 10*(l-l.floor).floor
+            loc = loc1 + loc2 + loc3.to_s + loc4.to_s + loc5 + loc6 + loc7.to_s + loc8.to_s
         end
     end
 end
