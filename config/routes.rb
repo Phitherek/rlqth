@@ -62,4 +62,7 @@ Rails.application.routes.draw do
   get '/pure', to: "main#pure"
   post '/pure', to: "main#pure_locator"
   get '/geolocate', to: "main#geolocate"
+  post '/api/address', to: "api#address"
+  post '/api/ip', to: "api#ip"
+  post '/api/pure', to: "api#pure"
 end
