@@ -1,0 +1,11 @@
+= form_for @loc, url: pure_path do |f|
+  .row
+    = f.label :latitude, t(".enter_latitude")
+    = f.number_field :latitude, required: true, step: "any"
+  .row
+    = f.label :longitude, t(".enter_longitude")
+    = f.number_field :longitude, required: true, step: "any"
+  .row
+    = f.submit t(:submit)
+= button_to t(:geolocate), geolocate_path, remote: true, method: :get
+= link_to t(:home), root_path, class: :index_link

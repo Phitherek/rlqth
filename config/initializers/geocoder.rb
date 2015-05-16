@@ -1,0 +1,1 @@
+Geocoder.configure(timeout: 30, http_headers: {"User-Agent" => "phitherek@gmail.com"})
