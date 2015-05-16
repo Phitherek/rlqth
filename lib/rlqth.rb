@@ -23,7 +23,7 @@ module Rlqth
             loc2 = (65+loc2).chr
             loc3 = lon_tmp/2
             loc4 = lat_tmp
-            loc5 = (lon_min/5).floor
+            loc5 = (lon_min/2.5).floor
             loc5 = (97+loc5).chr
             loc6 = (lat_min/2.5).floor
             loc6 = (97+loc6).chr
