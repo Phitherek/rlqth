@@ -1,0 +1,7 @@
+= form_for @loc, url: address_path do |f|
+  .row
+    = f.label :address, t(".enter_address")
+    = f.text_field :address, required: true
+  .row
+    = f.submit t(:submit)
+= link_to t(:home), root_path, class: :index_link

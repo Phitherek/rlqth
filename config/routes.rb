@@ -53,4 +53,13 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root to: "main#index"
+  get '/address', to: "main#address"
+  post '/address', to: "main#address_locator"
+  get '/ip', to: "main#ip"
+  post '/ip', to: "main#ip_locator"
+  get '/pure', to: "main#pure"
+  post '/pure', to: "main#pure_locator"
+  get '/geolocate', to: "main#geolocate"
 end

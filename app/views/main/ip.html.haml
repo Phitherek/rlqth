@@ -1,0 +1,7 @@
+= form_for @loc, url: ip_path do |f|
+  .row
+    = f.label :ip, t(".enter_ip")
+    = f.text_field :ip, value: request.ip.to_s, required: true
+  .row
+    = f.submit t(:submit)
+= link_to t(:home), root_path, class: :index_link

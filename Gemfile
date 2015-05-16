@@ -45,3 +45,4 @@ end
 gem 'haml-rails'
 gem 'rspec-rails'
 gem 'geocoder'
+gem 'active_model_serializers'

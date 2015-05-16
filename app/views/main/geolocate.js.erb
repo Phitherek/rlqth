@@ -1,0 +1,5 @@
+navigator.geolocation.getCurrentPosition(GeoL);
+function GeoL(position) {
+    $("#pure_location_latitude").val(position.coords.latitude);
+    $("#pure_location_longitude").val(position.coords.longitude);
+}

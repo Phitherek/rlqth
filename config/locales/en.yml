@@ -21,3 +21,26 @@
 
 en:
   hello: "Hello world"
+  subtitle: "A Maidenhead (QTH) locator finder and geocoder"
+  created_by: "Created by Phitherek_ in 2015."
+  radiolog_tools: "This application is a part of the RadioLog Tools."
+  address_geocoding: "Address geocoding provided by OpenStreetMap' s Nominatim service. Data by OpenStreetMap project."
+  ip_geocoding: "IP Address geocoding provided by FreeGeoIP."
+  submit: "Submit"
+  home: "Home"
+  geolocate: "Geolocate"
+  main:
+    index:
+      select: "Select query type:"
+      address: "Find locator from address"
+      ip: "Find locator from IP address"
+      pure: "Find locator from latitude and longitude (possible geolocation)"
+    address:
+      enter_address: "Enter the address to find the locator for:"
+    ip:
+      enter_ip: "Enter the IP address to find the locator for:"
+    pure:
+      enter_latitude: "Enter the location' s latitude:"
+      enter_longitude: "Enter the location' s longitude: "
+    result:
+      your_locator: "Your Maidenhead (QTH) locator is:"

@@ -1,10 +1,19 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Rlqth
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title RLQTH
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    %header
+      %h1 RLQTH
+      %p= t(:subtitle)
+    .main
+      = yield
+    %footer
+      %p.created_by= t(:created_by)
+      %p.radiolog= t(:radiolog_tools)
+      %p.address_geocoding= t(:address_geocoding)
+      %p.ip_geocoding= t(:ip_geocoding)
