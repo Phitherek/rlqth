@@ -29,6 +29,8 @@ en:
   submit: "Submit"
   home: "Home"
   geolocate: "Geolocate"
+  errors:
+    empty_coordinates: "Coordinates empty, locator calculation impossible!"
   main:
     index:
       select: "Select query type:"
@@ -37,10 +39,13 @@ en:
       pure: "Find locator from latitude and longitude (possible geolocation)"
     address:
       enter_address: "Enter the address to find the locator for:"
+      format_info: "The address should have the common map query format."
     ip:
       enter_ip: "Enter the IP address to find the locator for:"
+      format_info: "The IP address should have the valid IPv4 format, without additional information."
     pure:
       enter_latitude: "Enter the location' s latitude:"
       enter_longitude: "Enter the location' s longitude: "
+      format_info: "The coordinates should have decimal format."
     result:
       your_locator: "Your Maidenhead (QTH) locator is:"

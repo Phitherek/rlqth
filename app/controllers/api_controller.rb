@@ -4,8 +4,11 @@ class ApiController < ApplicationController
     def address
         @loc = AddressLocation.find_by_address(params[:address])
         @loc ||= AddressLocation.create(address: params[:address])
+        if @loc.latitude.nil? || @loc.longitude.nil?
+            render json: {error: "empty_coordinates"} and return
+        end
         if @loc.locator.nil?
-            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)
+            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
         render json: @loc
@@ -14,8 +17,11 @@ class ApiController < ApplicationController
     def ip
         @loc = IpLocation.find_by_ip(params[:ip])
         @loc ||= IpLocation.create(ip: params[:ip])
+        if @loc.latitude.nil? || @loc.longitude.nil?
+            render json: {error: "empty_coordinates"} and return
+        end
         if @loc.locator.nil?
-            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)
+            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
         render json: @loc
@@ -24,8 +30,11 @@ class ApiController < ApplicationController
     def pure
         @loc = PureLocation.where(latitude: params[:latitude], longitude: params[:longitude]).first
         @loc ||= PureLocation.create(latitude: params[:latitude], longitude: params[:longitude])
+        if @loc.latitude.nil? || @loc.longitude.nil?
+            render json: {error: "empty_coordinates"} and return
+        end
         if @loc.locator.nil?
-            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)
+            @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
         render json: @loc
