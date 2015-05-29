@@ -56,6 +56,16 @@ class MainController < ApplicationController
         render :result
     end
 
+    def reverse
+        @loc = ReverseLocation.new
+    end
+
+    def reverse_query
+        @loc = ReverseLocation.where(locator: params[:reverse_location][:locator]).first
+        @loc ||= ReverseLocation.create(params.require(:reverse_location).permit(:locator))
+        render :reverse_result
+    end
+
     def geolocate
     end
 end

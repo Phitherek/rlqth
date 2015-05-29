@@ -39,4 +39,10 @@ class ApiController < ApplicationController
         end
         render json: @loc
     end
+
+    def reverse
+        @loc = ReverseLocation.where(locator: params[:locator]).first
+        @loc ||= ReverseLocation.create(locator: params[:locator])
+        render json: @loc
+    end
 end

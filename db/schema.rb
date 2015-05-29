@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516000745) do
+ActiveRecord::Schema.define(version: 20150529211125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20150516000745) do
     t.string   "locator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reverse_locations", force: :cascade do |t|
+    t.string   "locator"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "reverse_address"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

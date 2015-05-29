@@ -61,8 +61,11 @@ Rails.application.routes.draw do
   post '/ip', to: "main#ip_locator"
   get '/pure', to: "main#pure"
   post '/pure', to: "main#pure_locator"
+  get '/reverse', to: "main#reverse"
+  post '/reverse', to: "main#reverse_query"
   get '/geolocate', to: "main#geolocate"
   post '/api/address', to: "api#address"
   post '/api/ip', to: "api#ip"
   post '/api/pure', to: "api#pure"
+  post '/api/reverse', to: "api#reverse"
 end

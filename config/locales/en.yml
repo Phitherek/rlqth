@@ -37,6 +37,7 @@ en:
       address: "Find locator from address"
       ip: "Find locator from IP address"
       pure: "Find locator from latitude and longitude (possible geolocation)"
+      reverse: "Reverse query (find address from locator)"
     address:
       enter_address: "Enter the address to find the locator for:"
       format_info: "The address should have the common map query format."
@@ -47,5 +48,10 @@ en:
       enter_latitude: "Enter the location' s latitude:"
       enter_longitude: "Enter the location' s longitude: "
       format_info: "The coordinates should have decimal format."
+    reverse:
+      enter_locator: "Enter your Maidenhead (QTH) locator:"
+      format_info: "The locator should be a valid Maidenhead (QTH) locator."
     result:
       your_locator: "Your Maidenhead (QTH) locator is:"
+    reverse_result:
+      your_address: "Your address is:"
