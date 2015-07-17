@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   #   end
 
   root to: "main#index"
+  get '/logout', to: "main#logout"
+  get '/auth/:provider/callback', to: "main#omniauth_callback", as: :omniauth_callback
   get '/address', to: "main#address"
   post '/address', to: "main#address_locator"
   get '/ip', to: "main#ip"
@@ -64,6 +66,7 @@ Rails.application.routes.draw do
   get '/reverse', to: "main#reverse"
   post '/reverse', to: "main#reverse_query"
   get '/geolocate', to: "main#geolocate"
+  get '/history', to: "main#history"
   post '/api/address', to: "api#address"
   post '/api/ip', to: "api#ip"
   post '/api/pure', to: "api#pure"

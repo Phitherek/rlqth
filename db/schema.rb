@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529211125) do
+ActiveRecord::Schema.define(version: 20150717200149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20150529211125) do
     t.string   "locator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "historical_queries", force: :cascade do |t|
+    t.integer  "remote_user_id"
+    t.integer  "location_id"
+    t.string   "location_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "ip_locations", force: :cascade do |t|
@@ -38,6 +46,22 @@ ActiveRecord::Schema.define(version: 20150529211125) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "locator"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "remote_sessions", force: :cascade do |t|
+    t.string   "token"
+    t.datetime "token_expires"
+    t.string   "refresh_token"
+    t.integer  "remote_user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "remote_users", force: :cascade do |t|
+    t.string   "callsign"
+    t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

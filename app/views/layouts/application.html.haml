@@ -16,6 +16,14 @@
     - if flash[:error]
       .flash.error
         = flash[:error]
+    .userbox
+      - if @user.nil?
+        %p= t(:not_logged_in)
+        = link_to t(:login), "/auth/rlauth"
+      - else
+        %p= t(:logged_in_as, callsign: @user.callsign)
+        = link_to t(:history), history_path
+        = link_to t(:logout), logout_path
     .main
       = yield
     %footer

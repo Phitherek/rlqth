@@ -22,13 +22,18 @@
 en:
   hello: "Hello world"
   subtitle: "A Maidenhead (QTH) locator finder and geocoder"
-  created_by: "Created by Phitherek_ in 2015."
+  created_by: "Created by Phitherek_ SO9PH in 2015."
   radiolog_tools: "This application is a part of the RadioLog Tools."
   address_geocoding: "Address geocoding provided by OpenStreetMap' s Nominatim service. Data by OpenStreetMap project."
   ip_geocoding: "IP Address geocoding provided by FreeGeoIP."
   submit: "Submit"
   home: "Home"
   geolocate: "Geolocate"
+  not_logged_in: "You are not logged in"
+  login: "Login via RLAuth"
+  logged_in_as: "You are logged in via RLAuth as %{callsign}"
+  logout: "Logout"
+  history: "Query history"
   errors:
     empty_coordinates: "Coordinates empty, locator calculation impossible!"
   main:
@@ -55,3 +60,8 @@ en:
       your_locator: "Your Maidenhead (QTH) locator is:"
     reverse_result:
       your_address: "Your address is:"
+    history:
+      no_hqs: "No history for your account yet!"
+      query: "Query:"
+      type: "Type:"
+      time: "Time:"
