@@ -11,7 +11,7 @@
     %tbody
       - @hqs.each do |hq|
         %tr
-          %td= hq.kind_of?(AddressLocation) ? link_to(hq.address, address_path(address: hq.address), method: :post) : (hq.kind_of?(IpLocation) ? link_to(hq.ip, ip_path(ip: hq.ip), method: :post) : (hq.kind_of?(PureLocation) ? link_to("#{hq.lat} : #{hq.lon}", pure_path(lat: hq.lat, lon: hq.lon), method: :post) : link_to(hq.locator, reverse_path(locator: hq.locator), method: :post)))
-          %td= hq.kind_of?(AddressLocation) ? "address" : (hq.kind_of?(IpLocation) ? "ip" : (hq.kind_of?(PureLocation) ? "pure" : "reverse"))
+          %td= hq.location.kind_of?(AddressLocation) ? link_to(hq.location.address, address_path(address: hq.location.address), method: :post) : (hq.location.kind_of?(IpLocation) ? link_to(hq.location.ip, ip_path(ip: hq.location.ip), method: :post) : (hq.location.kind_of?(PureLocation) ? link_to("#{hq.location.lat} : #{hq.location.lon}", pure_path(lat: hq.location.lat, lon: hq.location.lon), method: :post) : link_to(hq.location.locator, reverse_path(locator: hq.location.locator), method: :post)))
+          %td= hq.location.kind_of?(AddressLocation) ? "address" : (hq.location.kind_of?(IpLocation) ? "ip" : (hq.location.kind_of?(PureLocation) ? "pure" : "reverse"))
           %td= hq.created_at.to_s
 = link_to t(:home), root_path
