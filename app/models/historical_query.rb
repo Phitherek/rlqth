@@ -3,4 +3,5 @@ class HistoricalQuery < ActiveRecord::Base
     validates :remote_user, presence: true
 
     belongs_to :remote_user
+    belongs_to :location, polymorphic: true
 end
