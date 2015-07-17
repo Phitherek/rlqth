@@ -1,7 +1,7 @@
 class MainController < ApplicationController
 
     before_filter :find_user
-    before_filter :only_user, only: :history
+    before_filter :user_only, only: :history
 
     def index
     end
