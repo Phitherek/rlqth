@@ -111,6 +111,7 @@ class MainController < ApplicationController
     def logout
         HTTParty.post("https://rlauth.deira.phitherek.me/oauth/revoke?token=#{@session.token}")
         @session.destroy
+        session.delete('remote_session_token')
         redirect_to root_path
     end
 
