@@ -11,7 +11,7 @@
     %tbody
       - @hqs.each do |hq|
         %tr
-          %td= hq.location.kind_of?(AddressLocation) ? button_to(hq.location.address, address_path, form: {address_location: {address: hq.location.address}}) : (hq.location.kind_of?(IpLocation) ? button_to(hq.location.ip, ip_path, form: {ip_location: {ip: hq.location.ip}}) : (hq.location.kind_of?(PureLocation) ? button_to("#{hq.location.lat} : #{hq.location.lon}", pure_path, form: {pure_location: {lat: hq.location.lat, lon: hq.location.lon}}) : button_to(hq.location.locator, reverse_path, form: {reverse_location: {locator: hq.location.locator}})))
+          %td= hq.location.kind_of?(AddressLocation) ? button_to(hq.location.address, address_path, params: {address_location: {address: hq.location.address}}) : (hq.location.kind_of?(IpLocation) ? button_to(hq.location.ip, ip_path, params: {ip_location: {ip: hq.location.ip}}) : (hq.location.kind_of?(PureLocation) ? button_to("#{hq.location.lat} : #{hq.location.lon}", pure_path, params: {pure_location: {lat: hq.location.lat, lon: hq.location.lon}}) : button_to(hq.location.locator, reverse_path, params: {reverse_location: {locator: hq.location.locator}})))
           %td= hq.location.kind_of?(AddressLocation) ? "address" : (hq.location.kind_of?(IpLocation) ? "ip" : (hq.location.kind_of?(PureLocation) ? "pure" : "reverse"))
           %td= hq.created_at.to_s
 = link_to t(:home), root_path
