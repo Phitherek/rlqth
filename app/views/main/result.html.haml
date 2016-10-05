@@ -1,3 +1,4 @@
-%p= t(".your_locator")
-%p= @loc.locator
+.query-result-container
+  %h4.query-result-title= t(".your_locator")
+  .well.query-result= @loc.locator
 = link_to t(:home), root_path, class: :index_link

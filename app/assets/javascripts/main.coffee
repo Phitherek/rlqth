@@ -15,15 +15,31 @@ $ ->
       data: {address: address}
       success: (data) ->
         if data.address_location?
-          $('.query-result-title').html('Your Maidenhead (QTH) locator is:')
-          $('.query-result').html(data.address_location.locator)
-          $('.query-result-container').show()
+          $.ajax
+            type: 'GET'
+            url: '/get_i18n'
+            data: {key: 'main.result.your_locator'}
+            success: (val) ->
+              $('.query-result-title').html(val.i18n)
+              $('.query-result').html(data.address_location.locator)
+              $('.query-result-container').show()
         else if data.error?
           if data.error == 'empty_coordinates'
-            $('.query-error').html('Error: Empty coordinates!')
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.empty_coordinates'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
           else
-            $('.query-error').html('Unknown error!')
-          $('.query-error').show()
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.unknown'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
 
   doIpQuery = ->
     $('.query-result-container').hide()
@@ -36,15 +52,31 @@ $ ->
       data: {ip: ip}
       success: (data) ->
         if data.ip_location?
-          $('.query-result-title').html('Your Maidenhead (QTH) locator is:')
-          $('.query-result').html(data.ip_location.locator)
-          $('.query-result-container').show()
+          $.ajax
+            type: 'GET'
+            url: '/get_i18n'
+            data: {key: 'main.result.your_locator'}
+            success: (val) ->
+              $('.query-result-title').html(val.i18n)
+              $('.query-result').html(data.ip_location.locator)
+              $('.query-result-container').show()
         else if data.error?
           if data.error == 'empty_coordinates'
-            $('.query-error').html('Error: Empty coordinates!')
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.empty_coordinates'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
           else
-            $('.query-error').html('Unknown error!')
-          $('.query-error').show()
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.unknown'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
 
   doPureQuery = ->
     $('.query-result-container').hide()
@@ -58,15 +90,31 @@ $ ->
       data: {latitude: latitude, longitude: longitude}
       success: (data) ->
         if data.pure_location?
-          $('.query-result-title').html('Your Maidenhead (QTH) locator is:')
-          $('.query-result').html(data.pure_location.locator)
-          $('.query-result-container').show()
+          $.ajax
+            type: 'GET'
+            url: '/get_i18n'
+            data: {key: 'main.result.your_locator'}
+            success: (val) ->
+              $('.query-result-title').html(val.i18n)
+              $('.query-result').html(data.pure_location.locator)
+              $('.query-result-container').show()
         else if data.error?
           if data.error == 'empty_coordinates'
-            $('.query-error').html('Error: Empty coordinates!')
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.empty_coordinates'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
           else
-            $('.query-error').html('Unknown error!')
-          $('.query-error').show()
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.unknown'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
 
   doReverseQuery = ->
     $('.query-result-container').hide()
@@ -79,15 +127,31 @@ $ ->
       data: {locator: locator}
       success: (data) ->
         if data.reverse_location?
-          $('.query-result-title').html('Your address is:')
-          $('.query-result').html(data.reverse_location.reverse_address)
-          $('.query-result-container').show()
+          $.ajax
+            type: 'GET'
+            url: '/get_i18n'
+            data: {key: 'main.reverse_result.your_address'}
+            success: (val) ->
+              $('.query-result-title').html(val.i18n)
+              $('.query-result').html(data.reverse_location.reverse_address)
+              $('.query-result-container').show()
         else if data.error?
           if data.error == 'empty_coordinates'
-            $('.query-error').html('Error: Empty coordinates!')
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.empty_coordinates'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
           else
-            $('.query-error').html('Unknown error!')
-          $('.query-error').show()
+            $.ajax
+              type: 'GET'
+              url: '/get_i18n'
+              data: {key: 'errors.unknown'}
+              success: (val) ->
+                $('.query-error').html(val.i18n)
+                $('.query-error').show()
 
   $(document).on 'click', '.address-query-form form input[type="submit"]', (e) ->
     e.preventDefault()

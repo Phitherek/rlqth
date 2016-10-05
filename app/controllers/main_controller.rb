@@ -120,6 +120,10 @@ class MainController < ApplicationController
         redirect_to root_path
     end
 
+    def get_i18n
+        render json: {i18n: I18n.t(params[:key], locale: params[:locale] || I18n.default_locale)}
+    end
+
     private
 
     def auth_hash

@@ -1,3 +1,4 @@
-%p= t(".your_address")
-%p= @loc.reverse_address
+.query-result-container
+  %h4.query-result-title= t(".your_address")
+  .well.query-result= @loc.reverse_address
 = link_to t(:home), root_path, class: :index_link

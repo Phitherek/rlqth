@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   post '/reverse', to: "main#reverse_query"
   get '/geolocate', to: "main#geolocate"
   get '/history', to: "main#history"
+  get '/get_i18n', to: "main#get_i18n"
   post '/api/address', to: "api#address"
   post '/api/ip', to: "api#ip"
   post '/api/pure', to: "api#pure"
