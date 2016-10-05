@@ -7,27 +7,37 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %header
-      %h1 RLQTH
-      %p= t(:subtitle)
-    - if flash[:notice]
-      .flash.notice
-        = flash[:notice]
-    - if flash[:error]
-      .flash.error
-        = flash[:error]
-    .userbox
-      - if @user.nil?
-        %p= t(:not_logged_in)
-        = link_to t(:login), "/auth/rlauth"
-      - else
-        %p= t(:logged_in_as, callsign: @user.callsign)
-        = link_to t(:history), history_path
-        = link_to t(:logout), logout_path
-    .main
-      = yield
-    %footer
-      %p.created_by= t(:created_by)
-      %p.radiolog= t(:radiolog_tools)
-      %p.address_geocoding= t(:address_geocoding)
-      %p.ip_geocoding= t(:ip_geocoding)
+    .container
+      %header
+        .page-header
+          %h1
+            RLQTH
+            %small= t(:subtitle)
+      - if flash[:notice]
+        .flash.notice.alert.alert-info.alert-dismissible{role: 'alert'}
+          %button{type: :button, class: :close, data: {dismiss: :alert}, 'aria-label': 'Close'}
+            %span{'aria-hidden': :true} &times;
+          = flash[:notice]
+      - if flash[:error]
+        .flash.error.alert.alert-danger.alert-dismissible{role: 'alert'}
+          %button{type: :button, class: :close, data: {dismiss: :alert}, 'aria-label': 'Close'}
+            %span{'aria-hidden': :true} &times;
+          = flash[:error]
+      .row
+        .col-md-4.col-md-offset-4
+          .userbox
+            - if @user.nil?
+              %p= t(:not_logged_in)
+              = link_to t(:login), "/auth/rlauth"
+            - else
+              %p= t(:logged_in_as, callsign: @user.callsign)
+              = link_to t(:history), history_path
+              = link_to t(:logout), logout_path
+      = content_for :main_nav if content_for? :main_nav
+      .main
+        = yield
+      %footer
+        %p.created_by= t(:created_by)
+        %p.radiolog= t(:radiolog_tools)
+        %p.address_geocoding= t(:address_geocoding)
+        %p.ip_geocoding= t(:ip_geocoding)

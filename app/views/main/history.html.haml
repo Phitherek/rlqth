@@ -1,8 +1,8 @@
 %h2= t(:history)
 - if @hqs.empty?
-  %p= t(".no_hqs")
+  .alert.alert-info= t(".no_hqs")
 - else
-  %table
+  %table.table.table-striped.table-hover
     %thead
       %tr
         %th= t(".query")

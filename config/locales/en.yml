@@ -37,8 +37,7 @@ en:
   errors:
     empty_coordinates: "Coordinates empty, locator calculation impossible!"
   main:
-    index:
-      select: "Select query type:"
+    main_nav:
       address: "Find locator from address"
       ip: "Find locator from IP address"
       pure: "Find locator from latitude and longitude (possible geolocation)"

@@ -1,13 +1,18 @@
-= form_for @loc, url: pure_path, method: :post do |f|
-  .row
-    = f.label :latitude, t(".enter_latitude")
-    = f.number_field :latitude, required: true, step: "any"
-  .row
-    = f.label :longitude, t(".enter_longitude")
-    = f.number_field :longitude, required: true, step: "any"
-  .row
-    %p.format_info= t(".format_info")
-  .row
-    = f.submit t(:submit)
-= button_to t(:geolocate), geolocate_path, remote: true, method: :get
-= link_to t(:home), root_path, class: :index_link
+= render partial: 'main_nav'
+.query-form.pure-query-form
+  = form_for @loc, url: '#', method: :post, html: {class: 'form-horizontal'} do |f|
+    .form-group
+      .col-md-4
+        = f.label :latitude, t(".enter_latitude")
+        = f.number_field :latitude, required: true, step: "any", class: 'form-control'
+    .form-group
+      .col-md-4
+        = f.label :longitude, t(".enter_longitude")
+        = f.number_field :longitude, required: true, step: "any", class: 'form-control'
+        %p.format_info.text-muted= t(".format_info")
+    = f.submit t(:submit), class: 'btn btn-default pure-query-submit'
+  = button_to t(:geolocate), geolocate_path, remote: true, method: :get, class: 'btn btn-default', form_class: 'button_to geolocation_button'
+.query-result-container{style: 'display: none;'}
+  %h4.query-result-title
+  .well.query-result
+.query-error.alert.alert-danger{style: 'display: none;'}

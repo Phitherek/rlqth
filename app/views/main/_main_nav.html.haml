@@ -1,0 +1,9 @@
+- content_for :main_nav do
+  .row
+    .col-md-12
+      %nav
+        %ul.nav.nav-tabs
+          %li{role: :presentation, class: @main_nav_active == :address ? 'active' : ''}= link_to t(".address"), address_path
+          %li{role: :presentation, class: @main_nav_active == :ip ? 'active' : ''}= link_to t(".ip"), ip_path
+          %li{role: :presentation, class: @main_nav_active == :pure ? 'active' : ''}= link_to t(".pure"), pure_path
+          %li{role: :presentation, class: @main_nav_active == :reverse ? 'active' : ''}= link_to t(".reverse"), reverse_path

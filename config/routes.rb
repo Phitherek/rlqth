@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root to: "main#index"
+  root to: redirect('/address')
   get '/logout', to: "main#logout"
   get '/auth/:provider/callback', to: "main#omniauth_callback", as: :omniauth_callback
   get '/address', to: "main#address"

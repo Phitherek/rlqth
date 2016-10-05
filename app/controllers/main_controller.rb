@@ -3,16 +3,15 @@ class MainController < ApplicationController
     before_filter :find_user
     before_filter :user_only, only: :history
 
-    def index
-    end
-
     def address
         @loc = AddressLocation.new
+        @main_nav_active = :address
     end
 
     def address_locator
         @loc = AddressLocation.find_by_address(params[:address_location][:address])
         @loc ||= AddressLocation.create(params.require(:address_location).permit(:address))
+        @main_nav_active = :address
         if @loc.latitude.nil? || @loc.longitude.nil?
             flash[:error] = t("errors.empty_coordinates")
             render :address and return
@@ -29,11 +28,13 @@ class MainController < ApplicationController
 
     def ip
         @loc = IpLocation.new
+        @main_nav_active = :ip
     end
 
     def ip_locator
         @loc = IpLocation.find_by_ip(params[:ip_location][:ip])
         @loc ||= IpLocation.create(params.require(:ip_location).permit(:ip))
+        @main_nav_active = :ip
         if @loc.latitude.nil? || @loc.longitude.nil?
             flash[:error] = t("errors.empty_coordinates")
             render :ip and return
@@ -50,11 +51,13 @@ class MainController < ApplicationController
 
     def pure
         @loc = PureLocation.new
+        @main_nav_active = :pure
     end
 
     def pure_locator
         @loc = PureLocation.where(latitude: params[:pure_location][:latitude], longitude: params[:pure_location][:longitude]).first
         @loc ||= PureLocation.create(params.require(:pure_location).permit(:latitude, :longitude))
+        @main_nav_active = :pure
         if @loc.latitude.nil? || @loc.longitude.nil?
             flash[:error] = t("errors.empty_coordinates")
             render :pure and return
@@ -71,11 +74,13 @@ class MainController < ApplicationController
 
     def reverse
         @loc = ReverseLocation.new
+        @main_nav_active = :reverse
     end
 
     def reverse_query
         @loc = ReverseLocation.where(locator: params[:reverse_location][:locator]).first
         @loc ||= ReverseLocation.create(params.require(:reverse_location).permit(:locator))
+        @main_nav_active = :reverse
         if !@user.nil?
             HistoricalQuery.create(remote_user: @user, location: @loc)
         end
