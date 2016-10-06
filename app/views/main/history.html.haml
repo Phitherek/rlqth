@@ -1,7 +1,12 @@
+= link_to t(:home), root_path
+
 %h2= t(:history)
 - if @hqs.empty?
   .alert.alert-info= t(".no_hqs")
 - else
+  .row
+    .col-md-12.text-center
+      = rel_next_prev_link_tags @hqs
   .row
     .col-md-12
       %table.table.table-striped.table-hover
