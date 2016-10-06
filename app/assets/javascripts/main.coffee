@@ -11,8 +11,8 @@ $ ->
     address = form.find('input[name="address_location[address]"]').val()
     $.ajax
       type: 'POST'
-      url: '/api/address'
-      data: {address: address}
+      url: '/address'
+      data: {address_location: {address: address}}
       success: (data) ->
         if data.address_location?
           $.ajax
@@ -48,8 +48,8 @@ $ ->
     ip = form.find('input[name="ip_location[ip]"]').val()
     $.ajax
       type: 'POST'
-      url: '/api/ip'
-      data: {ip: ip}
+      url: '/ip'
+      data: {ip_location: {ip: ip}}
       success: (data) ->
         if data.ip_location?
           $.ajax
@@ -86,8 +86,8 @@ $ ->
     longitude = form.find('input[name="pure_location[longitude]"]').val()
     $.ajax
       type: 'POST'
-      url: '/api/pure'
-      data: {latitude: latitude, longitude: longitude}
+      url: '/pure'
+      data: {pure_location: {latitude: latitude, longitude: longitude}}
       success: (data) ->
         if data.pure_location?
           $.ajax
@@ -123,8 +123,8 @@ $ ->
     locator = form.find('input[name="reverse_location[locator]"]').val()
     $.ajax
       type: 'POST'
-      url: '/api/reverse'
-      data: {locator: locator}
+      url: '/reverse'
+      data: {reverse_location: {locator: locator}}
       success: (data) ->
         if data.reverse_location?
           $.ajax

@@ -12,18 +12,26 @@ class MainController < ApplicationController
         @loc = AddressLocation.find_by_address(params[:address_location][:address])
         @loc ||= AddressLocation.create(params.require(:address_location).permit(:address))
         @main_nav_active = :address
-        if @loc.latitude.nil? || @loc.longitude.nil?
-            flash[:error] = t("errors.empty_coordinates")
-            render :address and return
+        if @loc.latitude.blank? || @loc.longitude.blank?
+            if request.xhr?
+                render json: {error: :empty_coordinates} and return
+            else
+                flash[:error] = t("errors.empty_coordinates")
+                render :address and return
+            end
         end
-        if @loc.locator.nil?
+        if @loc.locator.blank?
             @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
-        if !@user.nil?
+        if !@user.blank?
             HistoricalQuery.create(remote_user: @user, location: @loc)
         end
-        render :result
+        if request.xhr?
+            render json: @loc
+        else
+            render :result
+        end
     end
 
     def ip
@@ -35,18 +43,26 @@ class MainController < ApplicationController
         @loc = IpLocation.find_by_ip(params[:ip_location][:ip])
         @loc ||= IpLocation.create(params.require(:ip_location).permit(:ip))
         @main_nav_active = :ip
-        if @loc.latitude.nil? || @loc.longitude.nil?
-            flash[:error] = t("errors.empty_coordinates")
-            render :ip and return
+        if @loc.latitude.blank? || @loc.longitude.blank?
+            if request.xhr?
+                render json: {error: :empty_coordinates} and return
+            else
+                flash[:error] = t("errors.empty_coordinates")
+                render :ip and return
+            end
         end
-        if @loc.locator.nil?
+        if @loc.locator.blank?
             @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
-        if !@user.nil?
+        if !@user.blank?
             HistoricalQuery.create(remote_user: @user, location: @loc)
         end
-        render :result
+        if request.xhr?
+            render json: @loc
+        else
+            render :result
+        end
     end
 
     def pure
@@ -58,18 +74,26 @@ class MainController < ApplicationController
         @loc = PureLocation.where(latitude: params[:pure_location][:latitude], longitude: params[:pure_location][:longitude]).first
         @loc ||= PureLocation.create(params.require(:pure_location).permit(:latitude, :longitude))
         @main_nav_active = :pure
-        if @loc.latitude.nil? || @loc.longitude.nil?
-            flash[:error] = t("errors.empty_coordinates")
-            render :pure and return
+        if @loc.latitude.blank? || @loc.longitude.blank?
+            if request.xhr?
+                render json: {error: :empty_coordinates} and return
+            else
+                flash[:error] = t("errors.empty_coordinates")
+                render :pure and return
+            end
         end
-        if @loc.locator.nil?
+        if @loc.locator.blank?
             @loc.locator = Rlqth::Utils.locator_from_dimensions(@loc.latitude, @loc.longitude)[0..5]
             @loc.save!
         end
-        if !@user.nil?
+        if !@user.blank?
             HistoricalQuery.create(remote_user: @user, location: @loc)
         end
-        render :result
+        if request.xhr?
+            render json: @loc
+        else
+            render :result
+        end
     end
 
     def reverse
@@ -81,10 +105,14 @@ class MainController < ApplicationController
         @loc = ReverseLocation.where(locator: params[:reverse_location][:locator]).first
         @loc ||= ReverseLocation.create(params.require(:reverse_location).permit(:locator))
         @main_nav_active = :reverse
-        if !@user.nil?
+        if !@user.blank?
             HistoricalQuery.create(remote_user: @user, location: @loc)
         end
-        render :reverse_result
+        if request.xhr?
+            render json: @loc
+        else
+            render :reverse_result
+        end
     end
 
     def geolocate
