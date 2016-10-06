@@ -19,5 +19,7 @@
   .row
     .col-md-12.text-center
       = page_entries_info @hqs, entry_name: 'query'
+  .row
+    .col-md-12.text-center
       = paginate @hqs
 = link_to t(:home), root_path
