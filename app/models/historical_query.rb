@@ -4,6 +4,4 @@ class HistoricalQuery < ActiveRecord::Base
 
     belongs_to :remote_user
     belongs_to :location, polymorphic: true
-
-    paginates_per 10
 end
