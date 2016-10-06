@@ -91,7 +91,7 @@ class MainController < ApplicationController
     end
 
     def history
-        @hqs = HistoricalQuery.where(remote_user_id: @user.id).order(updated_at: :desc)
+        @hqs = HistoricalQuery.where(remote_user_id: @user.id).order(updated_at: :desc).page(params[:page])
     end
 
     def omniauth_callback
